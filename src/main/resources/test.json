@@ -1,0 +1,11 @@
+{
+  "assignToEmail" : "string",
+  "eLearning" : "string",
+  "courseCode" : "string",
+  "licenses" : "string",
+  "groupOfFive" : "string",
+  "groupOfFour" : "string",
+  "startTime" : "2024-01-26T13:00:00",
+  "endTime" : "2024-01-26T14:00:00",
+  "attempts" : "string"
+}
