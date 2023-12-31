@@ -5,7 +5,6 @@ import com.simlearn.instructormanager.entity.CourseEntity;
 import com.simlearn.instructormanager.entity.GroupFiveEntity;
 import com.simlearn.instructormanager.entity.GroupFourEntity;
 import com.simlearn.instructormanager.entity.InstructorEntity;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Component;
 
 import java.nio.ByteBuffer;
@@ -16,6 +15,7 @@ import java.util.UUID;
 @Component
 public class InstructorMapper {
 
+    private int groupNumber = 1;
     public InstructorEntity updateInstructorEntity(InstructorEntity instructorEntity, InstructorDto instructorDto) {
         CourseEntity courseEntity = new CourseEntity();
         courseEntity.setCourseCode(instructorDto.getCourseCode());
@@ -24,8 +24,10 @@ public class InstructorMapper {
         courseEntity.setStartTime(instructorDto.getStartTime());
         courseEntity.setEndTime(instructorDto.getEndTime());
         courseEntity.setLicenses(instructorDto.getLicenses());
-        courseEntity.setGroupFiveEntityList(createGroupFiveEntity(instructorDto.getGroupOfFive(), new ArrayList<GroupFiveEntity>()));
-        courseEntity.setGroupFourEntityList(createGroupFourEntity(instructorDto.getGroupOfFour(), new ArrayList<GroupFourEntity>()));
+
+        courseEntity.setGroupFiveEntityList(createGroupFiveEntity(instructorDto.getGroupOfFive(), new ArrayList<GroupFiveEntity>(), groupNumber));
+        courseEntity.setGroupFourEntityList(createGroupFourEntity(instructorDto.getGroupOfFour(), new ArrayList<GroupFourEntity>(), groupNumber));
+        this.groupNumber = 1;
         List<CourseEntity> courseEntitiesList = new ArrayList<>();
         courseEntitiesList.add(courseEntity);
         if (instructorEntity.getCourseEntities().isEmpty()) {
@@ -38,25 +40,29 @@ public class InstructorMapper {
         return instructorEntity;
     }
 
-    private List<GroupFiveEntity> createGroupFiveEntity(int numberOfGroups, List<GroupFiveEntity> groupFiveEntities) {
+    private List<GroupFiveEntity> createGroupFiveEntity(int numberOfGroups, List<GroupFiveEntity> groupFiveEntities, int groupNumber) {
         while (numberOfGroups > 0) {
             GroupFiveEntity groupFiveEntity = new GroupFiveEntity();
-            groupFiveEntity.setGroupCode(Long.toString(ByteBuffer.wrap(UUID.randomUUID().toString().getBytes()).getLong(), Character.MAX_RADIX).substring(0, 10));
+            groupFiveEntity.setGroupCode("A-".concat(String.valueOf(groupNumber)));
             groupFiveEntity.setLimit(5);
             groupFiveEntities.add(groupFiveEntity);
+            groupNumber++;
             numberOfGroups--;
         }
+        this.groupNumber = groupNumber;
         return groupFiveEntities;
     }
 
-    private List<GroupFourEntity> createGroupFourEntity(int numberOfGroups, List<GroupFourEntity> groupFourEntities) {
+    private List<GroupFourEntity> createGroupFourEntity(int numberOfGroups, List<GroupFourEntity> groupFourEntities, Integer groupNumber) {
         while (numberOfGroups > 0) {
             GroupFourEntity groupFourEntity = new GroupFourEntity();
-            groupFourEntity.setGroupCode(Long.toString(ByteBuffer.wrap(UUID.randomUUID().toString().getBytes()).getLong(), Character.MAX_RADIX).substring(0, 10));
+            groupFourEntity.setGroupCode("A-".concat(String.valueOf(groupNumber)));
             groupFourEntity.setLimit(4);
             groupFourEntities.add(groupFourEntity);
+            groupNumber++;
             numberOfGroups--;
         }
+        this.groupNumber = groupNumber;
         return groupFourEntities;
     }
 }
