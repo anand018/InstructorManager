@@ -12,8 +12,6 @@ import java.util.List;
 @ToString
 @Document("Course")
 public class CourseEntity {
-    @Id
-    private String id;
     private String courseName;
     private String courseCode;
     private String licenses;
@@ -22,5 +20,4 @@ public class CourseEntity {
     private String attempts;
     private List <GroupFiveEntity> groupFiveEntityList;
     private List <GroupFourEntity> groupFourEntityList;
-    private List<String> enrolledParticipants = new ArrayList<>();
 }

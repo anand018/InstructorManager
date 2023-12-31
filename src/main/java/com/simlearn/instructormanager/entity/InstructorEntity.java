@@ -13,7 +13,7 @@ import java.util.List;
 @Document("Instructor")
 public class InstructorEntity {
     @Id
-    private String id;
+    private String _id;
     private String email;
     private String username;
     private List<CourseEntity> courseEntities = new ArrayList<>();

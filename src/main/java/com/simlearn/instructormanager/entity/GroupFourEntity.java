@@ -11,9 +11,7 @@ import java.util.List;
 @ToString
 @Document("GroupFive")
 public class GroupFourEntity {
-    @Id
-    private String id;
     private int limit;
     private String groupCode;
-    private List<StudentEntity> studentEmailId;
+    private List<StudentEntity> students;
 }

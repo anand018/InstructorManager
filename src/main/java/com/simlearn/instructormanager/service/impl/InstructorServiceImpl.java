@@ -2,6 +2,7 @@ package com.simlearn.instructormanager.service.impl;
 
 import com.simlearn.instructormanager.dto.InstructorDto;
 import com.simlearn.instructormanager.entity.InstructorEntity;
+import com.simlearn.instructormanager.exception.CourseNotFoundException;
 import com.simlearn.instructormanager.mapper.InstructorMapper;
 import com.simlearn.instructormanager.service.InstructorService;
 import org.apache.commons.lang3.ObjectUtils;
@@ -24,19 +25,27 @@ public class InstructorServiceImpl implements InstructorService {
     private InstructorMapper instructorMapper;
 
     @Override
-    public void saveInstructor(InstructorDto instructorDto) {
+    public void saveCourse(InstructorDto instructorDto) {
         Query query = new Query();
         query.addCriteria(Criteria.where("email").is(instructorDto.getAssignToEmail()));
         InstructorEntity instructorEntity = mongoTemplate.findOne(query, InstructorEntity.class);
 
-        if(ObjectUtils.isEmpty(instructorEntity)) {
+        if (ObjectUtils.isEmpty(instructorEntity)) {
             instructorEntity = new InstructorEntity();
             instructorEntity.setEmail(instructorDto.getAssignToEmail());
             instructorEntity.setUsername(instructorDto.getUsername());
             mongoTemplate.save(instructorMapper.updateInstructorEntity(instructorEntity, instructorDto));
         } else {
             Update update = new Update().set("courseEntities", instructorMapper.updateInstructorEntity(instructorEntity, instructorDto).getCourseEntities());
-            mongoTemplate.updateFirst(new Query(Criteria.where("id").is(instructorEntity.getId())), update, InstructorEntity.class);
+            mongoTemplate.updateFirst(new Query(Criteria.where("_id").is(instructorEntity.get_id())), update, InstructorEntity.class);
         }
+    }
+
+    @Override
+    public InstructorEntity getCourses(String username) {
+        InstructorEntity instructorEntity = mongoTemplate.findOne(new Query(Criteria.where("username").is(username)), InstructorEntity.class);
+        if (ObjectUtils.isEmpty(instructorEntity))
+            throw new CourseNotFoundException("No course found");
+        return instructorEntity;
     }
 }
