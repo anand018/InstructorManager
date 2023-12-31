@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.List;
 
 @Service
 public class InstructorServiceImpl implements InstructorService {
@@ -47,5 +48,10 @@ public class InstructorServiceImpl implements InstructorService {
         if (ObjectUtils.isEmpty(instructorEntity))
             throw new CourseNotFoundException("No course found");
         return instructorEntity;
+    }
+
+    @Override
+    public List<InstructorEntity> getAllInstructors() {
+        return mongoTemplate.findAll(InstructorEntity.class);
     }
 }
