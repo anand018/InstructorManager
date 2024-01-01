@@ -9,4 +9,5 @@ public interface InstructorService {
     void saveCourse(InstructorDto instructorDto);
     InstructorEntity getCourses(String username);
     List<InstructorEntity> getAllInstructors();
+    void deleteInstructor(String username);
 }

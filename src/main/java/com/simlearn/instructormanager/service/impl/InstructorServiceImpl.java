@@ -54,4 +54,9 @@ public class InstructorServiceImpl implements InstructorService {
     public List<InstructorEntity> getAllInstructors() {
         return mongoTemplate.findAll(InstructorEntity.class);
     }
+
+    @Override
+    public void deleteInstructor(String username) {
+        mongoTemplate.remove(new Query(Criteria.where("username").is(username)), InstructorEntity.class);
+    }
 }

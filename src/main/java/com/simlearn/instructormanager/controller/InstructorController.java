@@ -30,4 +30,9 @@ public class InstructorController {
     public List<InstructorEntity> getAllInstructors() {
         return instructorService.getAllInstructors();
     }
+
+    @DeleteMapping("/instructor/{username}")
+    public void deleteInstructor(@PathVariable String username) {
+        instructorService.deleteInstructor(username);
+    }
 }
