@@ -17,7 +17,7 @@ public class InstructorController {
     private InstructorService instructorService;
 
     @PostMapping("/course")
-    public void saveCourse(@RequestBody InstructorDto instructor) {
+    public void saveInstructorCourse(@RequestBody InstructorDto instructor) {
         instructorService.saveCourse(instructor);
     }
 
