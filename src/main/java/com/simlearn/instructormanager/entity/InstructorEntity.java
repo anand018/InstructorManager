@@ -16,5 +16,6 @@ public class InstructorEntity {
     private String _id;
     private String email;
     private String username;
+    private String fullName;
     private List<CourseEntity> courseEntities = new ArrayList<>();
 }

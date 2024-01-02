@@ -35,6 +35,7 @@ public class InstructorServiceImpl implements InstructorService {
             instructorEntity = new InstructorEntity();
             instructorEntity.setEmail(instructorDto.getAssignToEmail());
             instructorEntity.setUsername(instructorDto.getUsername());
+            instructorEntity.setFullName(instructorDto.getFullName());
             mongoTemplate.save(instructorMapper.updateInstructorEntity(instructorEntity, instructorDto));
         } else {
             Update update = new Update().set("courseEntities", instructorMapper.updateInstructorEntity(instructorEntity, instructorDto).getCourseEntities());

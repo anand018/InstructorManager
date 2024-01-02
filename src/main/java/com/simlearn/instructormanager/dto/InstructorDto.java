@@ -8,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 public class InstructorDto {
     private String username;
+    private String fullName;
     private String assignToEmail;
     private String courseName;
     private String courseCode;
