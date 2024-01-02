@@ -23,7 +23,7 @@ public class InstructorMapper {
         courseEntity.setAttempts(instructorDto.getAttempts());
         courseEntity.setStartTime(instructorDto.getStartTime());
         courseEntity.setEndTime(instructorDto.getEndTime());
-        courseEntity.setLicenses(instructorDto.getLicenses());
+        courseEntity.setLicenses(Integer.parseInt(instructorDto.getLicenses()));
 
         courseEntity.setGroupFiveEntityList(createGroupFiveEntity(instructorDto.getGroupOfFive(), new ArrayList<GroupFiveEntity>(), groupNumber));
         courseEntity.setGroupFourEntityList(createGroupFourEntity(instructorDto.getGroupOfFour(), new ArrayList<GroupFourEntity>(), groupNumber));

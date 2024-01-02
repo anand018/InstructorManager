@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("Student")
 public class StudentEntity {
     @Id
-    String id;
+    String _id;
     String fullName;
     String email;
 }

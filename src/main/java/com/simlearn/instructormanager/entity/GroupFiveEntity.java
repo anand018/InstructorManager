@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @ToString
-@Document("GroupFour")
+@Document("GroupFive")
 public class GroupFiveEntity {
     private int limit;
     private String groupCode;

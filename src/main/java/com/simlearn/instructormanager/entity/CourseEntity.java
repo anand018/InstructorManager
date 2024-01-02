@@ -14,10 +14,11 @@ import java.util.List;
 public class CourseEntity {
     private String courseName;
     private String courseCode;
-    private String licenses;
+    private int licenses;
     private String startTime;
     private String endTime;
     private String attempts;
     private List <GroupFiveEntity> groupFiveEntityList;
     private List <GroupFourEntity> groupFourEntityList;
+    private List<String> enrolledStudentsList;
 }
