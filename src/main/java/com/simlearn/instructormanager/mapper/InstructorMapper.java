@@ -20,6 +20,7 @@ public class InstructorMapper {
         CourseEntity courseEntity = new CourseEntity();
         courseEntity.setCourseCode(instructorDto.getCourseCode());
         courseEntity.setCourseName(instructorDto.getCourseName());
+        courseEntity.setGameId(instructorDto.getGameId());
         courseEntity.setAttempts(instructorDto.getAttempts());
         courseEntity.setStartTime(instructorDto.getStartTime());
         courseEntity.setEndTime(instructorDto.getEndTime());

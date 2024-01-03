@@ -12,6 +12,7 @@ public class InstructorDto {
     private String assignToEmail;
     private String courseName;
     private String courseCode;
+    private String gameId;
     private String licenses;
     private int groupOfFive;
     private int groupOfFour;

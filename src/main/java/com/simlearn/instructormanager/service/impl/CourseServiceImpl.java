@@ -50,7 +50,7 @@ public class CourseServiceImpl implements CourseService {
                         Criteria.where("courseEntities.groupFiveEntityList.groupCode").is(groupCode)
                 ));
 
-        checkIfAlreadyEnrolled(query, studentEntity.getEmail());
+        checkIfAlreadyEnrolled(query, studentEntity.getEmail(), courseCode);
         updateCourse(query, studentEntity, courseCode, groupCode);
     }
 
@@ -73,13 +73,13 @@ public class CourseServiceImpl implements CourseService {
         }
     }
 
-    private void checkIfAlreadyEnrolled(Query query, String email) {
+    private void checkIfAlreadyEnrolled(Query query, String email, String courseCode) {
         InstructorEntity instructor = mongoTemplate.findOne(query, InstructorEntity.class);
         if (ObjectUtils.isNotEmpty(instructor)
                 && ObjectUtils.isNotEmpty(instructor.getCourseEntities())
                 && !instructor.getCourseEntities().isEmpty()) {
             instructor.getCourseEntities().forEach(courseEntity -> {
-                if (ObjectUtils.isNotEmpty(courseEntity)
+                if (ObjectUtils.isNotEmpty(courseEntity) && courseEntity.getCourseCode().equals(courseCode)
                         && ObjectUtils.isNotEmpty(courseEntity.getEnrolledStudentsList())
                         && courseEntity.getEnrolledStudentsList().contains(email)) {
                     throw new EnrollmentException("Student is already enrolled in the course.");

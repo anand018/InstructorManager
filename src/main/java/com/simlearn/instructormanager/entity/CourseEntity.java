@@ -14,6 +14,7 @@ import java.util.List;
 public class CourseEntity {
     private String courseName;
     private String courseCode;
+    private String gameId;
     private int licenses;
     private String startTime;
     private String endTime;
