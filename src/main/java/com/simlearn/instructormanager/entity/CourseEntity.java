@@ -19,6 +19,7 @@ public class CourseEntity {
     private String startTime;
     private String endTime;
     private String attempts;
+    private boolean archive;
     private List <GroupFiveEntity> groupFiveEntityList;
     private List <GroupFourEntity> groupFourEntityList;
     private List<String> enrolledStudentsList;

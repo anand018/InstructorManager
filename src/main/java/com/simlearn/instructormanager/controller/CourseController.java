@@ -22,4 +22,19 @@ public class CourseController {
     void enrollStudentToCourse(@PathVariable String courseCode, @PathVariable String groupCode, @RequestBody StudentDto studentDto) {
         courseService.updateAndAddStudent(courseCode, groupCode, studentDto);
     }
+
+    @PostMapping("/course/archive/{archive}/{instructorEmail}/{courseCode}")
+    public void updateCourseArchive(@PathVariable boolean archive, @PathVariable String instructorEmail, @PathVariable String courseCode) {
+        courseService.updateCourseArchive(archive, instructorEmail, courseCode);
+    }
+
+    @PostMapping("/course/attempts/{attempts}/{instructorEmail}/{courseCode}")
+    public void updateCourseArchive(@PathVariable int attempts, @PathVariable String instructorEmail, @PathVariable String courseCode) {
+        courseService.updateCourseAttempts(attempts, instructorEmail, courseCode);
+    }
+
+    @PostMapping("/course/schedule/{startTime}/{endTime}/{instructorEmail}/{courseCode}")
+    public void updateCourseSchedule(@PathVariable String startTime, @PathVariable String endTime, @PathVariable String instructorEmail, @PathVariable String courseCode) {
+        courseService.updateCourseSchedule(startTime, endTime, instructorEmail, courseCode);
+    }
 }

@@ -54,6 +54,29 @@ public class CourseServiceImpl implements CourseService {
         updateCourse(query, studentEntity, courseCode, groupCode);
     }
 
+    @Override
+    public void updateCourseArchive(boolean archive, String instructorEmail, String courseCode) {
+        Update update = new Update().set("courseEntities.$.archive", archive);
+        mongoTemplate.updateFirst(new Query(createCriteriaForCourse(instructorEmail, courseCode)), update, InstructorEntity.class);
+    }
+
+    @Override
+    public void updateCourseAttempts(int attempts, String instructorEmail, String courseCode) {
+        Update update = new Update().set("courseEntities.$.attempts", attempts);
+        mongoTemplate.updateFirst(new Query(createCriteriaForCourse(instructorEmail, courseCode)), update, InstructorEntity.class);
+    }
+
+    @Override
+    public void updateCourseSchedule(String startTime, String endTime, String instructorEmail, String courseCode) {
+        Update update = new Update().set("courseEntities.$.startTime", startTime).set("courseEntities.$.endTime", endTime);
+        mongoTemplate.updateFirst(new Query(createCriteriaForCourse(instructorEmail, courseCode)), update, InstructorEntity.class);
+    }
+
+    private Criteria createCriteriaForCourse(String instructorEmail, String courseCode) {
+        return Criteria.where("email").is(instructorEmail)
+                .and("courseEntities.courseCode").is(courseCode);
+    }
+
     private void updateCourse(Query query, StudentEntity studentEntity, String courseCode, String groupCode) {
         Update update = new Update();
         try {
