@@ -6,4 +6,5 @@ import lombok.Data;
 public class StudentDto {
     String fullName;
     String email;
+    boolean isAttempted;
 }

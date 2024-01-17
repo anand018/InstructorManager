@@ -5,6 +5,7 @@ import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,4 +24,5 @@ public class CourseEntity {
     private List <GroupFiveEntity> groupFiveEntityList;
     private List <GroupFourEntity> groupFourEntityList;
     private List<String> enrolledStudentsList;
+    private LocalDate createdDate;
 }

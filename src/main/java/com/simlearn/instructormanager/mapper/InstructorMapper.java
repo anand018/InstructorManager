@@ -8,6 +8,7 @@ import com.simlearn.instructormanager.entity.InstructorEntity;
 import org.springframework.stereotype.Component;
 
 import java.nio.ByteBuffer;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -25,6 +26,7 @@ public class InstructorMapper {
         courseEntity.setStartTime(instructorDto.getStartTime());
         courseEntity.setEndTime(instructorDto.getEndTime());
         courseEntity.setLicenses(Integer.parseInt(instructorDto.getLicenses()));
+        courseEntity.setCreatedDate(LocalDate.now());
 
         courseEntity.setGroupFiveEntityList(createGroupFiveEntity(instructorDto.getGroupOfFive(), new ArrayList<GroupFiveEntity>(), groupNumber));
         courseEntity.setGroupFourEntityList(createGroupFourEntity(instructorDto.getGroupOfFour(), new ArrayList<GroupFourEntity>(), groupNumber));
